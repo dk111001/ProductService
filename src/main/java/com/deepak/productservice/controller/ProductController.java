@@ -1,9 +1,11 @@
 package com.deepak.productservice.controller;
 
-import com.deepak.productservice.dto.CreateProductRequestDTO;
+import com.deepak.productservice.dto.ProductRequestDTO;
+import com.deepak.productservice.dto.ProductResponseDTO;
 import com.deepak.productservice.fakestoreapi.FakeStoreProductResponse;
+import com.deepak.productservice.mapper.ProductMapper;
+import com.deepak.productservice.models.Product;
 import com.deepak.productservice.service.IProductService;
-import com.deepak.productservice.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,21 +25,35 @@ public class ProductController {
     }
 
     @PostMapping("")
-    public String createProduct(@RequestBody CreateProductRequestDTO dto) {
-        return "product created... " + dto.getProductName();
-    }
-
-    @GetMapping("/{productId}")
-    public ResponseEntity<FakeStoreProductResponse> getProductById(@PathVariable("productId") Long productId) {
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO productRequestDTO) {
         try {
-            FakeStoreProductResponse data = productService.getProductById(productId);
-            ResponseEntity<FakeStoreProductResponse> response;
+            Product data = productService.createProduct(ProductMapper.getProductFromProductRequestDTO(productRequestDTO));
+            ResponseEntity<ProductResponseDTO> response;
             // for headers there is different type Response Entity
             if (Objects.isNull(data)) {
                 response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             else {
-                response = new ResponseEntity<>(data, HttpStatus.OK);
+                response = new ResponseEntity<>(ProductMapper.getProductResponseDTOFromProduct(data), HttpStatus.OK);
+            }
+            return response;
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable("productId") Long productId) {
+        try {
+            Product data = productService.getProductById(productId);
+            ResponseEntity<ProductResponseDTO> response;
+            // for headers there is different type Response Entity
+            if (Objects.isNull(data)) {
+                response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            else {
+                response = new ResponseEntity<>(ProductMapper.getProductResponseDTOFromProduct(data), HttpStatus.OK);
             }
             return response;
         }
