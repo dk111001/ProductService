@@ -1,11 +1,10 @@
-package com.deepak.productservice.controller;
+package com.deepak.productservice.controllers;
 
-import com.deepak.productservice.dto.ProductRequestDTO;
-import com.deepak.productservice.dto.ProductResponseDTO;
-import com.deepak.productservice.fakestoreapi.FakeStoreProductResponse;
+import com.deepak.productservice.dtos.ProductRequestDTO;
+import com.deepak.productservice.dtos.ProductResponseDTO;
 import com.deepak.productservice.mapper.ProductMapper;
 import com.deepak.productservice.models.Product;
-import com.deepak.productservice.service.IProductService;
+import com.deepak.productservice.services.IProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/products") // dispatcher servlet
 public class ProductController {
-    private IProductService productService; // dependency inversion principle
+    private final IProductService productService; // dependency inversion principle
     public ProductController(IProductService productService) {
         this.productService = productService; // not creating object
     }

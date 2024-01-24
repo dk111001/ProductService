@@ -1,7 +1,7 @@
 package com.deepak.productservice.mapper;
 
-import com.deepak.productservice.dto.ProductRequestDTO;
-import com.deepak.productservice.dto.ProductResponseDTO;
+import com.deepak.productservice.dtos.ProductRequestDTO;
+import com.deepak.productservice.dtos.ProductResponseDTO;
 import com.deepak.productservice.fakestoreapi.FakeStoreProductRequest;
 import com.deepak.productservice.fakestoreapi.FakeStoreProductResponse;
 import com.deepak.productservice.models.Product;
@@ -15,7 +15,7 @@ public class ProductMapper {
         product.setTitle(dto.getTitle());
         product.setDescription(dto.getDescription());
         product.setImageURL(dto.getImage());
-        product.setCategory(dto.getCategory());
+        //product.setCategory(dto.getCategory());
         return product;
     }
 
@@ -33,7 +33,7 @@ public class ProductMapper {
         FakeStoreProductRequest fakeStoreProductRequest = new FakeStoreProductRequest();
         fakeStoreProductRequest.setTitle(product.getTitle());
         fakeStoreProductRequest.setPrice(product.getPrice());
-        fakeStoreProductRequest.setCategory(product.getCategory());
+        //fakeStoreProductRequest.setCategory(product.getCategory());
         fakeStoreProductRequest.setDescription(product.getDescription());
         fakeStoreProductRequest.setImage(product.getImageURL());
         return fakeStoreProductRequest;

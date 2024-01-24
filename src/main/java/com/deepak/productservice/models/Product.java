@@ -1,15 +1,21 @@
 package com.deepak.productservice.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+import jakarta.persistence.*;
+
+@Entity
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Product extends BaseModel{
     private String title;
     private Double price;
     private String description;
     private String productName;
-    private String category;
+    // Product : Category
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     private String imageURL;
 }

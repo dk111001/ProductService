@@ -1,4 +1,4 @@
-package com.deepak.productservice.dto;
+package com.deepak.productservice.dtos;
 
 import lombok.Data;
 import lombok.Getter;
