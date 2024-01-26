@@ -14,7 +14,7 @@ public class Product extends BaseModel{
     private String description;
     private String productName;
     // Product : Category
-    @ManyToOne
+    @ManyToOne // no mapped by allowed
     @JoinColumn(name = "category_id")
     private Category category;
     private String imageURL;

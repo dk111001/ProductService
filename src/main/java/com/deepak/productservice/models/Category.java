@@ -1,11 +1,7 @@
 package com.deepak.productservice.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
 import java.util.List;
 
@@ -17,6 +13,8 @@ import java.util.List;
 public class Category extends BaseModel{
     private String name;
     private String description;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //similarly we can add for products // cascading
+    // any changes made in category will reflect in Category table
+    // also we can add this in category table
     private List<Product> products;
 }
