@@ -1,0 +1,1 @@
+ALTER TABLE product ADD sku varchar(255) DEFAULT NULL;

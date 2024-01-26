@@ -14,6 +14,7 @@ public class Product extends BaseModel{
     private String description;
     private String productName;
     private String specifications;
+    private String sku;
     // Product : Category
     @ManyToOne // no mapped by allowed
     @JoinColumn(name = "category_id")
