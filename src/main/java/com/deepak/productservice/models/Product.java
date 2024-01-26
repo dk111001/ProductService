@@ -13,6 +13,7 @@ public class Product extends BaseModel{
     private Double price;
     private String description;
     private String productName;
+    private String specifications;
     // Product : Category
     @ManyToOne // no mapped by allowed
     @JoinColumn(name = "category_id")
