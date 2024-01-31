@@ -21,7 +21,7 @@ public class AuthFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IllegalStateException, ServletException, IOException {
         try {
             HttpServletRequest req = (HttpServletRequest) request;
             final String authHeader = req.getHeader("Authorization");

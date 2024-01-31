@@ -8,7 +8,7 @@ import com.deepak.productservice.services.IProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -19,8 +19,11 @@ public class ProductController {
         this.productService = productService; // not creating object
     }
     @GetMapping("")
-    public String getAllProducts(){
-        return "all products...";
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(@RequestParam(defaultValue = "0") int pageNo,
+                                                        @RequestParam(defaultValue = "10") int pageSize){
+        List<Product> products = productService.getAllProducts(pageNo, pageSize);
+        return new ResponseEntity<>(ProductMapper.getProductDTOListFromProducts(products), HttpStatus.OK);
+
     }
 
     @PostMapping("")

@@ -6,6 +6,9 @@ import com.deepak.productservice.fakestoreapi.FakeStoreProductRequest;
 import com.deepak.productservice.fakestoreapi.FakeStoreProductResponse;
 import com.deepak.productservice.models.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductMapper {
     public static Product getProductFromFakeStoreProduct(FakeStoreProductResponse dto) {
         Product product = new Product();
@@ -48,5 +51,13 @@ public class ProductMapper {
         product.setDescription(dto.getDescription());
         product.setCategory(dto.getCategory());
         return product;
+    }
+
+    public static List<ProductResponseDTO> getProductDTOListFromProducts(List<Product> products) {
+        List<ProductResponseDTO> responseDTOS = new ArrayList<>();
+        for (Product p : products) {
+            responseDTOS.add(getProductResponseDTOFromProduct(p));
+        }
+        return responseDTOS;
     }
 }
